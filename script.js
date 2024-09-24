@@ -1,68 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Mijn Moderne Website</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <h1>Welkom op mijn moderne website</h1>
-    </header>
-    
-    <nav>
-        <ul>
-            <li><a href="#about">Over mij</a></li>
-            <li><a href="#services">Diensten</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+// Zoek de knop en tekst op
+const changeTextBtn = document.getElementById('changeTextBtn');
+const dynamicText = document.getElementById('dynamicText');
 
-    <section id="about">
-        <h2>Over mij</h2>
-        <p>Hier kun je wat informatie over jezelf of je bedrijf zetten.</p>
-        <button id="changeTextBtn">Klik om de tekst te veranderen</button>
-        <button id="changeColorBtn">Verander de achtergrondkleur</button>
-        <p id="dynamicText">Dit is de originele tekst.</p>
-    </section>
+// Voeg een klikgebeurtenis toe aan de knop
+changeTextBtn.addEventListener('click', function() {
+    dynamicText.textContent = 'De tekst is veranderd na een klik!';
+});
 
-    <section id="services">
-        <h2>Diensten</h2>
-        <div class="service-cards">
-            <div class="card">
-                <h3>Dienst 1</h3>
-                <p>Korte beschrijving van de dienst.</p>
-            </div>
-            <div class="card">
-                <h3>Dienst 2</h3>
-                <p>Korte beschrijving van de dienst.</p>
-            </div>
-            <div class="card">
-                <h3>Dienst 3</h3>
-                <p>Korte beschrijving van de dienst.</p>
-            </div>
-        </div>
-    </section>
+// Zoek het datum-element op
+const currentDate = document.getElementById('currentDate');
 
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>Neem contact met ons op via dit formulier:</p>
-        <form>
-            <label for="name">Naam:</label><br>
-            <input type="text" id="name" name="name"><br>
-            <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email"><br>
-            <input type="submit" value="Verzenden">
-        </form>
-    </section>
+// Haal de huidige datum op en zet deze in het element
+const today = new Date();
+currentDate.textContent = `Vandaag is het: ${today.toLocaleDateString()}`;
 
-    <footer>
-        <p id="currentDate"></p>
-        <p>© 2024 Prototype Website</p>
-    </footer>
+// Zoek de knop op voor het veranderen van de achtergrondkleur
+const changeColorBtn = document.getElementById('changeColorBtn');
 
-    <script src="script.js"></script>
-</body>
-</html>
+// Voeg een klikgebeurtenis toe om de achtergrondkleur te veranderen
+changeColorBtn.addEventListener('click', function() {
+    document.body.style.backgroundColor = getRandomColor();
+});
+
+// Functie om een willekeurige kleur te genereren
+function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
